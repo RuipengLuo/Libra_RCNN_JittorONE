@@ -305,14 +305,14 @@ class IoUBalancedSampler(RandomSampler):
 
         from jdet.ops.bbox_geometry import bbox_overlaps
         
-        ious = bbox_overlaps(neg_hbb, gt_hbb).max(axis=1) ##line308
+        ious = bbox_overlaps(neg_hbb, gt_hbb).max(axis=1)
 
         max_iou = float(ious.max())
         min_iou = float(ious.min())
         if max_iou - min_iou < 1e-6:
             max_iou += 1e-3
         step = (max_iou - min_iou + 1e-6) / self.k
-        bins = [min_iou + step * i for i in range(self.k + 1)]  #line315
+        bins = [min_iou + step * i for i in range(self.k + 1)]
 
         samples_per_bin = max(1, num_expected // self.k)
         chosen = []
@@ -324,7 +324,7 @@ class IoUBalancedSampler(RandomSampler):
             if idx_in_bin.numel() <= samples_per_bin:
                 chosen.append(idx_in_bin)
             else:
-                chosen.append(self.random_choice(idx_in_bin, samples_per_bin))##line327
+                chosen.append(self.random_choice(idx_in_bin, samples_per_bin))
 
         chosen = jt.contrib.concat(chosen) if chosen else jt.empty((0,), dtype='int64')
         if chosen.numel() < num_expected:
