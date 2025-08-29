@@ -1,4 +1,4 @@
-# JDet
+# 复现LibraRCNN——Jittor版本
 ## Introduction
 JDet 是一个基于[Jittor](https://github.com/Jittor/jittor)的目标检测基准库，主要聚焦于遥感图像目标检测（定向目标检测）。 
 本LibrariesRCNN复现基于JDet实现，完成了论文叙述的三处优化，即:BalanceFPN、IoUBalanceSapmler与Balance_l1_loss,具体修改文件夹已标记出。
@@ -55,9 +55,39 @@ python tools/run_net.py --config-file=configs/faster_rcnn_obb_r50_fpn_1x_dota.py
 ```shell
 python tools/run_net.py --config-file=configs/faster_rcnn_obb_r50_fpn_1x_dota.py --task=vis_test
 ```
-用希望罗训练出的模型可视化效果如下:
+用该模型训练出的可视化效果如下:
 <img src="https://github.com/Jittor/JDet/blob/visualization/docs/images/vis2.jpg?raw=true" alt="Visualization" width="800"/>
 
+### 实验log
+| 时间                     | name                                | lr                      | iter  | epoch | batch_idx | batch_size | total_loss | fps     | eta    | loss_rpn_cls | loss_rpn_bbox | rbbox_loss_cls | rbbox_acc | rbbox_loss_bbox |
+|--------------------------|-------------------------------------|-------------------------|-------|-------|-----------|------------|------------|---------|--------|--------------|---------------|----------------|-----------|-----------------|
+| Mon Aug 25 03:33:46 2025 | faster_rcnn_obb_r50_fpn_1x_dota     | 0.00010000000000000002  | 54300 | 11    | 4514      | 2          | 0.3273     | 8.4319  | 0:00:02| 0.0962       | 0.0273        | 0.1002         | 98.3012   | 0.1036          |
+
+[查看完整实验日志](./work_dirs/faster_rcnn_obb_r50_fpn_1x_dota/textlog/log_2025_08_24_23_32_40.txt)
+
+
+###  性能log
+| 类别               | AP        |
+|--------------------|-----------|
+| plane              | 0.8272    |
+| baseball-diamond   | 0.2373    |
+| bridge             | 0.0000    |
+| ground-track-field | 0.0136    |
+| small-vehicle      | 0.3703    |
+| large-vehicle      | 0.4870    |
+| ship               | 0.3529    |
+| tennis-court       | 0.7084    |
+| basketball-court   | 0.0104    |
+| storage-tank       | 0.4861    |
+| soccer-ball-field  | 0.0844    |
+| roundabout         | 0.0085    |
+| harbor             | 0.2350    |
+| swimming-pool      | 0.6305    |
+| helicopter         | 0.0000    |
+| **meanAP**         | **0.2968**|
+| **iter**           | **54312** |
+
+### loss函数
 
 **Notice**:
 训练参数含义：
