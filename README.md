@@ -56,7 +56,7 @@ python tools/run_net.py --config-file=configs/faster_rcnn_obb_r50_fpn_1x_dota.py
 python tools/run_net.py --config-file=configs/faster_rcnn_obb_r50_fpn_1x_dota.py --task=vis_test
 ```
 用该模型训练出的可视化效果如下:
-<img src="https://github.com/Jittor/JDet/blob/visualization/docs/images/vis2.jpg?raw=true" alt="Visualization" width="800"/>
+![](https://github.com/RuipengLuo/Libra_RCNN_JittorONE/blob/main/image/Snipaste_2025-08-29_17-10-00.png)
 
 ### 实验log
 | 时间                     | name                                | lr                      | iter  | epoch | batch_idx | batch_size | total_loss | fps     | eta    | loss_rpn_cls | loss_rpn_bbox | rbbox_loss_cls | rbbox_acc | rbbox_loss_bbox |
@@ -87,7 +87,12 @@ python tools/run_net.py --config-file=configs/faster_rcnn_obb_r50_fpn_1x_dota.py
 | **meanAP**         | **0.2968**|
 | **iter**           | **54312** |
 
-### loss函数
+### loss曲线
+![](https://github.com/RuipengLuo/Libra_RCNN_JittorONE/blob/main/image/Snipaste_2025-08-29_22-04-32.png)
+![](https://github.com/RuipengLuo/Libra_RCNN_JittorONE/blob/main/image/Snipaste_2025-08-29_22-05-14.png)
+![](https://github.com/RuipengLuo/Libra_RCNN_JittorONE/blob/main/image/Snipaste_2025-08-29_22-05-34.png)
+
+可以看到，虽然数据量不大，但是loss函数均呈现较为明显的下降趋势
 
 **Notice**:
 训练参数含义：
